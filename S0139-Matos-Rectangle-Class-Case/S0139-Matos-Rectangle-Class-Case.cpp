@@ -71,9 +71,14 @@ void experiment02() {
 //--------------------------------------------------------
 void experiment03()
 {
-    //NEEDS RULE OF THREE! 
+    //NEEDS RULE OF THREE!  
+    
     Rectangle r1(11, 11, "Pink");
     cout << "r1 " << r1.toString() << endl;
+
+    //Double-delete error coming soon!
+    //Rectangle r2(r1);
+    //cout << "r2 " << r2.toString() << endl;
 }
 
 int main()
