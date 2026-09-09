@@ -80,7 +80,7 @@ int main()
 {
     //experiment01();
     //experiment02();
-    experiment03();
+    experiment03();  //Pending - Make clones of a rectangle
     cout << "All done!\n";
 }
 
