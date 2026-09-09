@@ -10,6 +10,9 @@ private:
 	//Data members
 	double length;
 	double width;
+	//int* color = new int[3];
+	string* color;
+
 	static int counter;
 
 public:
@@ -26,14 +29,16 @@ public:
 	double getWidth() { return width; }
 	
 	//Constructor (condensed)
-	Rectangle(double lengthValue = 0, double widthValue = 0) {
+	Rectangle(double lengthValue = 0, double widthValue = 0, string colorValue = "Green") {
 		setLength(lengthValue);
 		setWidth(widthValue);
+		color = new string(colorValue);
 		counter++;
 	}
 	//Destructor
 	~Rectangle() {
-		cout << this << " deleted " << endl;
+		cout << this << " obj deleted, heap color box: " << color << endl;
+		delete color;
 		counter--;
 	}
 
@@ -41,7 +46,10 @@ public:
 	string toString() {
 		stringstream sout;
 		sout << this << " Rectangle [Length: " << getLength()
-			<< ", Width: " << getWidth() << "]";
+			<< ", Width: " << getWidth() 
+			<< ", Color: " << *color  
+			<< ", Color addr: " << color
+			<< "]";
 		return sout.str();
 	}
 
