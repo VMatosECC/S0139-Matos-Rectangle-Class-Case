@@ -11,7 +11,7 @@ private:
 	double length;
 	double width;
 	//int* color = new int[3];
-	string* color;
+	string* pcolor = nullptr;
 
 	static int counter;
 
@@ -24,31 +24,61 @@ public:
 	void setWidth(double widthValue) {
 		width = abs(widthValue);
 	}
+
+	void setColor(string colorValue) {
+		*pcolor = colorValue;
+	}
 	//Accessors
-	double getLength() { return length; }
-	double getWidth() { return width; }
+	double getLength() const { return length; }
+	double getWidth() const { return width; }
+	string getColor() const { return *pcolor; }
 	
 	//Constructor (condensed)
-	Rectangle(double lengthValue = 0, double widthValue = 0, string colorValue = "Green") {
+	Rectangle(double lengthValue = 0, double widthValue = 0, string colorValue = "White") {
 		setLength(lengthValue);
 		setWidth(widthValue);
-		color = new string(colorValue);
+		pcolor = new string(colorValue);
 		counter++;
 	}
+
+	//Copy-Constructor (Deep copy)
+	Rectangle(const Rectangle& other) {
+		this->setLength(other.getLength());
+		this->setWidth(other.width);
+		this->pcolor = new string();
+		//*pcolor = *(other.pcolor);
+		this->setColor(*(other.pcolor));
+		counter++;
+	}
+
+	//Copy-assignment operator
+	Rectangle& operator= (const Rectangle& other) {
+		if (this != &other) {
+			this->setLength(other.length);
+			this->setWidth(other.width);
+			delete this->pcolor;
+			pcolor = new string();
+			this->setColor(*(other.pcolor));
+		}
+		return *this;
+	}
+
+
+
 	//Destructor
 	~Rectangle() {
-		cout << this << " obj deleted, heap color box: " << color << endl;
-		delete color;
+		cout << this << " obj deleted, heap pcolor box: " << pcolor << endl;
+		delete pcolor;
 		counter--;
 	}
 
 	//User-defined Methods
-	string toString() {
+	string toString()  const {
 		stringstream sout;
 		sout << this << " Rectangle [Length: " << getLength()
 			<< ", Width: " << getWidth() 
-			<< ", Color: " << *color  
-			<< ", Color addr: " << color
+			<< ", pcolor value: " << *pcolor  
+			<< ", pcolor addr: " << pcolor
 			<< "]";
 		return sout.str();
 	}
@@ -59,9 +89,15 @@ public:
 
 	friend void showBox(Rectangle& r);
 	friend void showBox2(Rectangle& r);
+	friend ostream& operator<< (ostream& sout, const Rectangle& r);
 	
 };
 
 //Initialization of static data
 int Rectangle::counter = 0;
 
+ostream& operator<< (ostream& sout, const Rectangle& r)
+{
+	sout << r.toString();
+	return sout;
+}

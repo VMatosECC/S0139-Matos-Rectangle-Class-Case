@@ -76,9 +76,20 @@ void experiment03()
     Rectangle r1(11, 11, "Pink");
     cout << "r1 " << r1.toString() << endl;
 
-    //Double-delete error coming soon!
-    //Rectangle r2(r1);
-    //cout << "r2 " << r2.toString() << endl;
+    Rectangle r2(r1);
+    cout << "r2 " << r2.toString() << endl;
+
+    Rectangle r3 = r1;
+    cout << "r3 " << r3.toString() << endl;
+
+    Rectangle r4(2, 4, "Navy Blue");
+    cout << "r4 " << r4.toString() << endl;
+
+    r4 = r1;
+    cout << endl;
+    cout << "r1 " << r1.toString() << endl;
+    cout << "r4 " << r4.toString() << endl;
+    cout << "r4 " << r4 << endl;
 }
 
 int main()
