@@ -4,15 +4,23 @@
 #include <sstream>
 using namespace std;
 
+/**
+ * Rectangle.h
+ * Lightweight Rectangle class with instance counting and formatted output.
+ *
+ * The Rectangle class stores width, height, and a reference to its color.
+ * It provides accessors, mutators, area/perimeter calculations,
+ * and a friend `operator<<` for human-readable output. A static counter keeps track
+ * of constructed instances. The Rectangle class follows the Rule of Three, 
+ * allowing independent clones to be created by deep-copying a source object.
+ */
 class Rectangle
 {
 private:
 	//Data members
 	double length;
 	double width;
-	//int* color = new int[3];
-	string* pcolor = nullptr;
-
+	string* pcolor = nullptr;	//CAUTION!
 	static int counter;
 
 public:
