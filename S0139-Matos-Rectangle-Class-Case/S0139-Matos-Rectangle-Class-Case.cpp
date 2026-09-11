@@ -8,14 +8,15 @@ void showBox(Rectangle& r) {
     cout << "FRIEND Lenth: " << r.length << endl;
     cout << "FRIEND Width: " << r.width << endl;
 }
-
-void showBox2(Rectangle& r) {
-    cout << "FRIEND Lenth: " << r.length << endl;
-    cout << "FRIEND Width: " << r.width << endl;
-}
+// Caution. This should give errors (showBox2 is NOT a Rectangle's friend)
+//void showBox2(Rectangle& r) {
+//    cout << "NOT A FRIEND Lenth: " << r.length << endl;
+//    cout << "NOT A FRIEND Width: " << r.width << endl;
+//}
 
 void experiment01()
 {
+    //Testing the static counter data member and static method getCount
     cout << "Total rectangles: " << Rectangle::getCount() << endl;
 
     Rectangle r1(10, 10);
@@ -36,6 +37,7 @@ void experiment01()
 }
 //------------------------------------------------------------
 void experiment02() {
+    //Creating Rectangle objects and references to Rectangles
     Rectangle r1(11, 11);
     cout << "r1  " << r1.toString() << endl;
 
@@ -71,7 +73,9 @@ void experiment02() {
 //--------------------------------------------------------
 void experiment03()
 {
-    //NEEDS RULE OF THREE!  
+    // Cloning Rectangles using a DEEP COPY approach
+    // Implementing the Rule of three (copy constructor + 
+    // copy assignment + destuctor)
     
     Rectangle r1(11, 11, "Pink");
     cout << "r1 " << r1.toString() << endl;
@@ -96,7 +100,7 @@ int main()
 {
     //experiment01();
     //experiment02();
-    experiment03();  //Pending - Make clones of a rectangle
+    experiment03();  
     cout << "All done!\n";
 }
 

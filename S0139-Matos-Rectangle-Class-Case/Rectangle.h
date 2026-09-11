@@ -88,14 +88,15 @@ public:
 	}
 
 	friend void showBox(Rectangle& r);
-	friend void showBox2(Rectangle& r);
 	friend ostream& operator<< (ostream& sout, const Rectangle& r);
 	
 };
 
-//Initialization of static data
+// -----------------------------------------------------------------
+// Initialization of static data
 int Rectangle::counter = 0;
 
+// Implementation of a friend function (operator<<)
 ostream& operator<< (ostream& sout, const Rectangle& r)
 {
 	sout << r.toString();
