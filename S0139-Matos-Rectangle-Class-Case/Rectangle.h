@@ -8,11 +8,13 @@ using namespace std;
  * Rectangle.h
  * Lightweight Rectangle class with instance counting and formatted output.
  *
- * The Rectangle class stores width, height, and a reference to its color.
+ * This class models a geometric rectangle that stores length, width 
+ * a heap-allocated color string, a static object counter, 
+ * and a complete 'Rule of Three' implementation (copy constructor, 
+ * copy assignment operator, and destructor) to guarantee safe deep copies. 
  * It provides accessors, mutators, area/perimeter calculations,
- * and a friend `operator<<` for human-readable output. A static counter keeps track
- * of constructed instances. The Rectangle class follows the Rule of Three, 
- * allowing independent clones to be created by deep-copying a source object.
+ * a friend `operator<<` for human-readable output, and a friend showBox()
+ * function to demonstrate security risks when privacy is bypassed.
  */
 class Rectangle
 {
@@ -95,7 +97,9 @@ public:
 		return counter;
 	}
 
+	//CAUTION - showBox should declare its parameter as a const
 	friend void showBox(Rectangle& r);
+
 	friend ostream& operator<< (ostream& sout, const Rectangle& r);
 	
 };

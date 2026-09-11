@@ -5,8 +5,14 @@
 using namespace std;
 
 void showBox(Rectangle& r) {
+    // TEST - uncomment next statement - run experiment01. 
+    // The object will be compromised. A better approach 
+    // is to declare the parameter as const, that is
+    // void showBox(const Rectangle& r)
+    r.setColor("Ugly gray");
     cout << "FRIEND Lenth: " << r.length << endl;
     cout << "FRIEND Width: " << r.width << endl;
+    cout << "FRIEND color: " << r.getColor() << endl;
 }
 // Caution. This should give errors (showBox2 is NOT a Rectangle's friend)
 //void showBox2(Rectangle& r) {
@@ -17,8 +23,11 @@ void showBox(Rectangle& r) {
 void experiment01()
 {
     //Testing the static counter data member and static method getCount
+    //Using a friend function and compromising its data
     cout << "Total rectangles: " << Rectangle::getCount() << endl;
 
+    //create statically allocated instances of a stand-alone rectangle
+    //and an array of three rectangles (partially initialized)
     Rectangle r1(10, 10);
     cout << "Total rectangles: " << Rectangle::getCount() << endl;
 
@@ -29,15 +38,20 @@ void experiment01()
         cout << r.toString() << endl;
     }
 
+    //Create a heap-allocated rectangle
     Rectangle* p1 = new Rectangle(20, 20);
     cout << "p1   " << p1 << endl;
     cout << "*p1  " << p1->toString() << endl;
+    delete p1;  //remove it from the heap
 
+    //Calling a Rectangle-friend function (security risk!)
     showBox(r1);
+    cout << "r1 " << r1.toString() << endl;
 }
 //------------------------------------------------------------
 void experiment02() {
     //Creating Rectangle objects and references to Rectangles
+    //Reviewing pointer syntax and contrasting with object notation
     Rectangle r1(11, 11);
     cout << "r1  " << r1.toString() << endl;
 
