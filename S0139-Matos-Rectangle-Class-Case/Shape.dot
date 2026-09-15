@@ -1,0 +1,32 @@
+digraph ClassDiagram {
+
+    graph [
+        label    = "Shape.h"
+        labelloc = "t"   rankdir  = "TB"
+        fontname = "Helvetica"   fontsize = 14
+        bgcolor  = "white"   pad = "0.5"
+        nodesep  = "0.8"   ranksep  = "1.0"
+    ]
+
+    node [ fontname="Helvetica" fontsize=11
+           shape="record" style="filled" ]
+    edge [ fontname="Helvetica" fontsize=10 ]
+
+    // ── Shape ───────────────────────────
+    Shape [
+        fillcolor = "#F2F4F7"   color = "#888888"
+        label = "{
+        \<\<abstract\>\>\nShape
+        |
+        \l
+        |
+        + getArea() : double  \{abstract\} const\l
+        + getPerimeter() : double  \{abstract\} const\l
+        + toString() : string  \{abstract\} const\l
+        + ~Shape()\l
+        }"
+    ]
+
+    // ── Inheritance ──────────────────────────────
+
+}

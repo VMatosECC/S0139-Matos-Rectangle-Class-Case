@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include "Shape.h"
 using namespace std;
 
 /**
@@ -16,7 +17,7 @@ using namespace std;
  * a friend `operator<<` for human-readable output, and a friend showBox()
  * function to demonstrate security risks when privacy is bypassed.
  */
-class Rectangle
+class Rectangle : public Shape
 {
 private:
 	//Data members
@@ -28,15 +29,15 @@ private:
 public:
 	//Mutators
 	void setLength(double lengthValue) {
-		length = abs(lengthValue);
+		this->length = abs(lengthValue);
 	}
 
 	void setWidth(double widthValue) {
-		width = abs(widthValue);
+		this->width = abs(widthValue);
 	}
 
 	void setColor(string colorValue) {
-		*pcolor = colorValue;
+		*this->pcolor = colorValue;
 	}
 	//Accessors
 	double getLength() const { return length; }
@@ -44,7 +45,9 @@ public:
 	string getColor() const { return *pcolor; }
 	
 	//Constructor (condensed)
-	Rectangle(double lengthValue = 0, double widthValue = 0, string colorValue = "White") {
+	Rectangle(double lengthValue = 0, double widthValue = 0, string colorValue = "White") 
+		: Shape()
+	{
 		setLength(lengthValue);
 		setWidth(widthValue);
 		pcolor = new string(colorValue);
@@ -52,7 +55,9 @@ public:
 	}
 
 	//Copy-Constructor (Deep copy)
-	Rectangle(const Rectangle& other) {
+	Rectangle(const Rectangle& other) 
+		: Shape()
+	{
 		this->setLength(other.getLength());
 		this->setWidth(other.width);
 		this->pcolor = new string();
@@ -82,7 +87,7 @@ public:
 		counter--;
 	}
 
-	//User-defined Methods
+	//User-defined Methods --------------------------------------------------
 	string toString()  const {
 		stringstream sout;
 		sout << this << " Rectangle [Length: " << getLength()
@@ -97,10 +102,38 @@ public:
 		return counter;
 	}
 
+	double getArea() const {
+		return width * length;
+	}
+
+	double getPerimeter() const {
+		return 2 * (width + length);
+	}
+
 	//CAUTION - showBox should declare its parameter as a const
 	friend void showBox(Rectangle& r);
 
 	friend ostream& operator<< (ostream& sout, const Rectangle& r);
+
+	//Version1 - operator+ as a function member
+	Rectangle operator+ (const Rectangle& other) {
+		Rectangle rtemp;
+		rtemp.setLength(this->length + other.length);
+		rtemp.setWidth(this->width + other.width);
+		*rtemp.pcolor = *(this->pcolor)  + " + " +  *(other.pcolor);
+		return rtemp;
+	}
+
+	//Version2 - operator+ as a friend fuction
+	//friend Rectangle operator+ (const Rectangle& left, const Rectangle& rhs)
+	//{
+	//	Rectangle temp;
+	//	temp.setLength(left.length + rhs.length);
+	//	temp.setWidth(left.length + rhs.width);
+	//	temp.pcolor = new string();
+	//	temp.setColor(left.getColor() +  + "+"  + rhs.getColor());
+	//	return temp;
+	//}
 	
 };
 

@@ -1,0 +1,58 @@
+digraph ClassDiagram {
+
+    graph [
+        label    = "Rectangle.h"
+        labelloc = "t"   rankdir  = "TB"
+        fontname = "Helvetica"   fontsize = 14
+        bgcolor  = "white"   pad = "0.5"
+        nodesep  = "0.8"   ranksep  = "1.0"
+    ]
+
+    node [ fontname="Helvetica" fontsize=11
+           shape="record" style="filled" ]
+    edge [ fontname="Helvetica" fontsize=10 ]
+
+    // ── Rectangle ───────────────────────────
+    Rectangle [
+        fillcolor = "#D6E4F0"   color = "#1B3A6B"
+        label = "{
+        \<\<class\>\>\nRectangle
+        |
+        - length : double\l
+        - width : double\l
+        - pcolor : string*\l
+        - counter : int  \{static\}\l
+        |
+        + setLength(double) : void\l
+        + setWidth(double) : void\l
+        + setColor(string) : void\l
+        + getLength() : double const\l
+        + getWidth() : double const\l
+        + getColor() : string const\l
+        + Rectangle(double, double, string)\l
+        + Rectangle(const Rectangle\&)\l
+        + operator=(const Rectangle\&) : Rectangle\&\l
+        + ~Rectangle()\l
+        + toString() : string const\l
+        + getCount() : int  \{static\}\l
+        + getArea() : double const\l
+        + getPerimeter() : double const\l
+        }"
+    ]
+
+    // ── Friend functions ─────────────────────
+    friend_showBox [ shape="note"
+        fillcolor="#FFFBEA"
+        color="#C8960C" fontsize=10
+        label="friend\\nshowBox(Rectangle\&)" ]
+    friend_showBox -> Rectangle [ style=dashed arrowhead=open color="#C8960C" label="  accesses" ]
+    friend_operator__ [ shape="note"
+        fillcolor="#FFFBEA"
+        color="#C8960C" fontsize=10
+        label="friend\\noperator\<\<(ostream\&, const Rectangle\&)" ]
+    friend_operator__ -> Rectangle [ style=dashed arrowhead=open color="#C8960C" label="  accesses" ]
+
+    // ── Inheritance ──────────────────────────────
+    Rectangle -> Shape [ arrowhead=empty style=solid color="#1B3A6B" label="  public" ]
+
+}

@@ -109,12 +109,30 @@ void experiment03()
     cout << "r4 " << r4.toString() << endl;
     cout << "r4 " << r4 << endl;
 }
+//-----------------------------------------------------
+void experiment04()
+{
+    //test operator-overloading
+    Rectangle r1(2, 4, "Blue");
+    Rectangle r2(2, 4, "Red");
+
+    cout << "r1 " << r1 << endl;
+    cout << "r2 " << r2 << endl;
+
+    Rectangle r3;
+    cout << "r3 " << r3 << endl;
+    r3 = r1 + r2;
+    cout << "r3 " << r3 << endl;
+
+}
+
 
 int main()
 {
     //experiment01();
     //experiment02();
-    experiment03();  
+    //experiment03();
+    experiment04();
     cout << "All done!\n";
 }
 
