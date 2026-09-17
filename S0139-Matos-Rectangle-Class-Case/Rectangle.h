@@ -115,25 +115,26 @@ public:
 
 	friend ostream& operator<< (ostream& sout, const Rectangle& r);
 
-	//Version1 - operator+ as a function member
-	Rectangle operator+ (const Rectangle& other) {
-		Rectangle rtemp;
-		rtemp.setLength(this->length + other.length);
-		rtemp.setWidth(this->width + other.width);
-		*rtemp.pcolor = *(this->pcolor)  + " + " +  *(other.pcolor);
-		return rtemp;
-	}
-
-	//Version2 - operator+ as a friend fuction
-	//friend Rectangle operator+ (const Rectangle& left, const Rectangle& rhs)
-	//{
-	//	Rectangle temp;
-	//	temp.setLength(left.length + rhs.length);
-	//	temp.setWidth(left.length + rhs.width);
-	//	temp.pcolor = new string();
-	//	temp.setColor(left.getColor() +  + "+"  + rhs.getColor());
-	//	return temp;
+	////Version1 - operator+ as a function member
+	//Rectangle operator+ (const Rectangle& other) {
+	//	Rectangle rtemp;
+	//	rtemp.setLength(this->length + other.length);
+	//	rtemp.setWidth(this->width + other.width);
+	//	rtemp.pcolor = new string();
+	//	*rtemp.pcolor = *(this->pcolor)  + " + " +  *(other.pcolor);
+	//	return rtemp;
 	//}
+
+	////Version2 - operator+ as a friend fuction
+	friend Rectangle operator+ (const Rectangle& left, const Rectangle& rhs)
+	{
+		Rectangle temp;
+		temp.setLength(left.length + rhs.length);
+		temp.setWidth(left.length + rhs.width);
+		temp.pcolor = new string();
+		temp.setColor(left.getColor() +  + "+"  + rhs.getColor());
+		return temp;
+	}
 	
 };
 
@@ -147,3 +148,4 @@ ostream& operator<< (ostream& sout, const Rectangle& r)
 	sout << r.toString();
 	return sout;
 }
+

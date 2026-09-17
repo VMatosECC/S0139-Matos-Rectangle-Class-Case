@@ -124,6 +124,9 @@ void experiment04()
     r3 = r1 + r2;
     cout << "r3 " << r3 << endl;
 
+    cout << r3 << endl;
+
+
 }
 
 
