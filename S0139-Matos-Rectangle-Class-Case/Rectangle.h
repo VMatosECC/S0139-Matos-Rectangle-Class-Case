@@ -115,7 +115,7 @@ public:
 
 	friend ostream& operator<< (ostream& sout, const Rectangle& r);
 
-	////Version1 - operator+ as a function member
+	////Version1 - operator+ defined as a function member
 	//Rectangle operator+ (const Rectangle& other) {
 	//	Rectangle rtemp;
 	//	rtemp.setLength(this->length + other.length);
@@ -125,12 +125,12 @@ public:
 	//	return rtemp;
 	//}
 
-	////Version2 - operator+ as a friend fuction
+	////Version2 - operator+ defined as a friend fuction 
 	friend Rectangle operator+ (const Rectangle& left, const Rectangle& rhs)
 	{
 		Rectangle temp;
 		temp.setLength(left.length + rhs.length);
-		temp.setWidth(left.length + rhs.width);
+		temp.setWidth(left.width + rhs.width);
 		temp.pcolor = new string();
 		temp.setColor(left.getColor() +  + "+"  + rhs.getColor());
 		return temp;

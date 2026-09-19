@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include "Rectangle.h"
+#include "RectangleRGB.h"
+#include "RGBColor.h"
 using namespace std;
 
 void showBox(Rectangle& r) {
@@ -128,14 +130,38 @@ void experiment04()
 
 
 }
+//-----------------------------------------------------------------
+void experiment05() {
+    RGBColor cred(255, 0, 0);
+    cout << "cred " << cred << endl;
+    RectangleRGB r1(10, 20, cred);
+    cout << "r1 " << r1 << endl;
+    showBox(r1);
 
+    RGBColor cblue(0, 255, 0);
+    RectangleRGB r2(11, 22, cblue);
+    cout << "r2 " << r2 << endl;
+
+    RectangleRGB r3;
+    cout << "r3 " << r3 << endl;
+
+    r3 = r1 + r2;
+    cout << "r3 " << r3 << endl;
+
+    RectangleRGB r4(r3);
+    cout << "r4 " << r4 << endl;
+
+    r4 = r1;
+    cout << "r4 " << r4 << endl;
+}
 
 int main()
 {
-    //experiment01();
+    experiment01();
     //experiment02();
     //experiment03();
-    experiment04();
+    //experiment04();
+    //experiment05();
     cout << "All done!\n";
 }
 
